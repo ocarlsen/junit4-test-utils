@@ -9,7 +9,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 @OrderWith(OrderAnnotation.class)
-public class OrderTest {
+public class ExampleTest {
 
     private static int counter = -2;
 
