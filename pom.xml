@@ -10,7 +10,7 @@
     <packaging>jar</packaging>
 
     <name>junit4-test-utils</name>
-    <description>A simple junit4-test-utils.</description>
+    <description>Utilities for testing with JUnit4.</description>
     <url>https://github.com/ocarlsen/junit4-test-utils</url>
 
     <licenses>
@@ -122,6 +122,55 @@
                 </executions>
             </plugin>
 
+            <!-- Site -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <configuration>
+                    <!--
+                    Let Github Site Plugin handle deployment.
+                    https://github.github.com/maven-plugins/site-plugin/phase.html
+                     -->
+                    <skipDeploy>true</skipDeploy>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <!--
+                Deploy the site to Github Pages
+                https://github.github.com/maven-plugins/site-plugin/quickstart.html
+                -->
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>0.12</version><!-- https://github.com/github/maven-plugins/issues/105 -->
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <!-- select the Maven phase in which the plugin will be executed -->
+                        <phase>site-deploy</phase>
+                        <configuration>
+
+                            <!-- The id of the server to use to retrieve the Github credentials.
+                            This id must identify a server from your setting.xml file. -->
+                            <server>github</server>
+
+                            <!-- The commit message -->
+                            <message>Building site for project version ${project.version}</message>
+
+                            <!-- The location where the site is uploaded -->
+                            <path>${site.path}</path>
+
+                            <!-- Use merge or override the content -->
+                            <merge>true</merge>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
