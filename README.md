@@ -5,10 +5,26 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ocarlsen_junit4-test-utils&metric=alert_status)](https://sonarcloud.io/dashboard?id=ocarlsen_junit4-test-utils)
 [![SonarCloud Coverage](https://sonarcloud.io/api/project_badges/measure?project=ocarlsen_junit4-test-utils&metric=coverage)](https://sonarcloud.io/dashboard?id=ocarlsen_junit4-test-utils)
 
-
 Utilities for testing with JUnit 4.
 
-## Order
+## Dependency Information
+
+### Maven
+
+    <dependency>
+        <groupId>com.ocarlsen.test</groupId>
+        <artifactId>junit4-test-utils</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <scope>test</scope>
+    </dependency>
+
+### Gradle
+
+    compile 'com.ocarlsen.test:junit4-test-utils:1.0-SNAPSHOT'
+
+## Example Code
+
+### Order
 
 Use the `com.ocarlsen.test.util.Order` annotation in JUnit 4 (>=4.13)
 like you would the `org.junit.jupiter.api.Order` annotation in JUnit 5.
@@ -19,17 +35,17 @@ like you would the `org.junit.jupiter.api.Order` annotation in JUnit 5.
         @Order(-1)
         @Test
         public void test_1() {
-            assertThat(++counter, is(-1));
+            // Will run first
         }
     
         @Test
         public void test() {
-            assertThat(++counter, is(0));
+            // Will run second
         }
     
         @Order(1)
         @Test
         public void test1() {
-            assertThat(++counter, is(1));
+            // Will run third
         }
     }
