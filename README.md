@@ -14,13 +14,13 @@ Utilities for testing with JUnit 4.
     <dependency>
         <groupId>com.ocarlsen.test</groupId>
         <artifactId>junit4-test-utils</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0</version>
         <scope>test</scope>
     </dependency>
 
 ### Gradle
 
-    compile 'com.ocarlsen.test:junit4-test-utils:1.0-SNAPSHOT'
+    compile 'com.ocarlsen.test:junit4-test-utils:1.0'
 
 ## Example Code
 
