@@ -14,7 +14,7 @@ Utilities for testing with JUnit 4.
     <dependency>
         <groupId>com.ocarlsen.test</groupId>
         <artifactId>junit4-test-utils</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.1-SNAPSHOT</version>
         <scope>test</scope>
     </dependency>
 
