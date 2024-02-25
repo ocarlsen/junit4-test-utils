@@ -15,7 +15,7 @@
     <licenses>
         <license>
             <name>MIT License</name>
-            <url>https://raw.githubusercontent.com/ocarlsen/slf4j-log-level/main/LICENSE</url>
+            <url>https://raw.githubusercontent.com/ocarlsen/junit4-test-utils/main/LICENSE</url>
         </license>
     </licenses>
 
@@ -154,6 +154,32 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+
+            <!-- Include README in release -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>3.0.0-M6</version>
+                <configuration>
+                    <tagNameFormat>v@{project.version}</tagNameFormat>
+                    <pushChanges>false</pushChanges>
+                    <preparationGoals>resources:copy-resources@readme scm:add -Dincludes=README.md</preparationGoals>
+                    <completionGoals>resources:copy-resources@readme scm:add -Dincludes=README.md</completionGoals>
+                </configuration>
+            </plugin>
+
+            <!-- Push artifacts to OSSRH. Bound to 'deploy' goal. -->
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.13</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
             </plugin>
 
             <!-- Site -->
