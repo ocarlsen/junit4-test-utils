@@ -12,15 +12,15 @@ Utilities for testing with JUnit 4.
 ### Maven
 
     <dependency>
-        <groupId>com.ocarlsen.test</groupId>
-        <artifactId>junit4-test-utils</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>${project.artifactId}</artifactId>
+        <version>${project.version}</version>
         <scope>test</scope>
     </dependency>
 
 ### Gradle
 
-    compile 'com.ocarlsen.test:junit4-test-utils:1.0-SNAPSHOT'
+    compile '${project.groupId}:${project.artifactId}:${project.version}'
 
 ## Example Code
 
@@ -30,22 +30,38 @@ Use the `com.ocarlsen.test.util.Order` annotation in JUnit 4 (>= 4.13)
 like you would the `org.junit.jupiter.api.Order` annotation in JUnit 5.
 
     @OrderWith(OrderAnnotation.class)
-    public class OrderTest {
+    public class ExampleTest {
+    
+        private static int counter = -2;
+    
+        @BeforeClass
+        public static void checkCounter_2() {
+            assertThat(counter, is(-2));
+        }
+    
+        @AfterClass
+        public static void checkCounter2() {
+            assertThat(++counter, is(2));
+        }
     
         @Order(-1)
         @Test
         public void test_1() {
-            // Will run first
+            assertThat(++counter, is(-1));
         }
     
         @Test
         public void test() {
-            // Will run second
+            assertThat(++counter, is(0));
         }
     
         @Order(1)
         @Test
         public void test1() {
-            // Will run third
+            assertThat(++counter, is(1));
         }
     }
+
+This example is demonstrated in
+[ExampleTest](https://github.com/ocarlsen/junit4-test-utils/blob/main/src/test/java/com/ocarlsen/test/util/ExampleTest.java).
+
