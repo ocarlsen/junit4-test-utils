@@ -28,6 +28,13 @@
         </developer>
     </developers>
 
+    <scm>
+        <connection>scm:git:https://github.com/ocarlsen/junit4-test-utils</connection>
+        <developerConnection>${project.scm.connection}</developerConnection>
+        <url>https://github.com/ocarlsen/junit4-test-utils</url>
+        <tag>HEAD</tag>
+    </scm>
+
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
